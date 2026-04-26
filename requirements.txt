@@ -1,0 +1,6 @@
+anthropic
+elevenlabs
+opencv-python
+pygame
+pillow
+python-dotenv
