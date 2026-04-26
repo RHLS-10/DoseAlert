@@ -1,8 +1,17 @@
 """
-vision_service.py — Sends an image to Gemini Vision and returns adherence + pill JSON.
+vision_service.py — Multi-reference few-shot vision.
 
-Standalone test:
-    python vision_service.py test_capture_1.jpg
+Loads two reference photos of the user's actual pill organizer (top-down + angled)
+and sends them to Gemini alongside each live frame. Gemini compares the live frame
+to the references and only triggers when it sees that specific object.
+
+Reference files expected in the dosealert folder:
+    reference_pillbox_top.jpg     (top-down view, all compartments visible)
+    reference_pillbox_angle.jpg   (30-45 degree angle, matches head-cam perspective)
+
+Capture them with:
+    python camera_driver.py --capture reference_pillbox_top.jpg
+    python camera_driver.py --capture reference_pillbox_angle.jpg
 """
 import os
 import sys
@@ -19,18 +28,55 @@ if not API_KEY:
 
 genai.configure(api_key=API_KEY)
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-2.5-flash-lite"
+MAX_DIM = 640
+
+REFERENCE_PATHS = [
+    "reference_pillbox_top.jpg",
+    "reference_pillbox_angle.jpg",
+]
 
 POSITION_TO_DAY = [
     "sunday", "monday", "tuesday", "wednesday",
     "thursday", "friday", "saturday",
 ]
 
-PROMPT = """You are a medical adherence monitoring AI watching a senior take their daily medication through a head-mounted camera.
 
-The image shows a 7-day pill organizer with compartments arranged in a single horizontal row.
+def _load_reference(path):
+    if not os.path.exists(path):
+        return None
+    img = Image.open(path)
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    img.thumbnail((MAX_DIM, MAX_DIM))
+    return img
 
-CRITICAL — compartment layout (use POSITION from left, NOT the letter, to identify the day):
+
+_references = [(p, _load_reference(p)) for p in REFERENCE_PATHS]
+_loaded_refs = [img for _, img in _references if img is not None]
+
+if _loaded_refs:
+    for path, img in _references:
+        status = "✓" if img is not None else "✗ (missing)"
+        print(f"[vision] {status} {path}")
+    print(f"[vision] using {len(_loaded_refs)} reference image(s) for few-shot detection")
+else:
+    print("[vision] ⚠️  no reference images found")
+    print("[vision]    capture with:")
+    for p in REFERENCE_PATHS:
+        print(f"[vision]      python camera_driver.py --capture {p}")
+    print("[vision]    falling back to generic detection (less accurate)")
+
+
+PROMPT_WITH_REFERENCES = """You are a medical adherence monitoring AI watching a senior take their daily medication.
+
+You receive multiple images:
+  IMAGE 1, IMAGE 2 (and possibly more) — REFERENCE PHOTOS of the EXACT pill organizer the user owns, from different angles.
+  FINAL IMAGE — LIVE frame from the head-mounted camera.
+
+CRITICAL: Only set pill_organizer_visible=true if the FINAL image contains the SAME pill organizer shown in the reference photos. Other objects (earbuds cases, electronics, books, food containers, jewelry boxes) are NOT pill organizers — return false even if they superficially resemble one. Compare carefully.
+
+The pill organizer has 7 compartments arranged in a horizontal row. Position-to-day mapping:
   Position 1 (leftmost):  S = SUNDAY
   Position 2:             M = MONDAY
   Position 3:             T = TUESDAY
@@ -39,37 +85,43 @@ CRITICAL — compartment layout (use POSITION from left, NOT the letter, to iden
   Position 6:             F = FRIDAY
   Position 7 (rightmost): S = SATURDAY  (second S)
 
-There are TWO "S" compartments (Sunday=position 1, Saturday=position 7) and TWO "T" compartments (Tuesday=3, Thursday=5). Always count from the left edge.
-
-Return ONLY a valid JSON object with these exact fields:
-
+Return ONLY a valid JSON object:
 {
   "pill_organizer_visible": boolean,
   "open_compartment_position": integer 1-7 or null,
   "open_compartment_day": derived from position above, or null,
   "open_compartment_state": "has_pills" | "empty" | null,
-  "pills_in_compartment": [
-    { "shape": "oval" | "round" | "capsule" | "square" | "other", "count": integer }
-  ],
+  "pills_in_compartment": [{"shape": "oval"|"round"|"capsule"|"square"|"other", "count": integer}],
   "total_pills_visible": integer,
   "confidence": float 0.0-1.0,
   "scene_description": short string under 20 words
 }
 
-Pill shape definitions:
-- "round"   = circular, disc-like (think aspirin)
-- "oval"    = elongated, longer than wide, smooth ends (think ibuprofen tablet)
-- "capsule" = two-tone cylindrical pill with rounded ends (think Tylenol gelcap)
-- "square"  = squarish/rectangular tablet
-- "other"   = anything that doesn't fit above
+Pill shapes: round (circular), oval (elongated), capsule (two-tone cylindrical), square, other.
+Be CONSERVATIVE — when unsure, return pill_organizer_visible=false. False positives are worse than false negatives.
+Return ONLY the JSON object. No markdown, no commentary.
+"""
 
-Rules:
-- A compartment is "open" if its lid is visibly raised or removed.
-- If multiple lids are open, pick the one MOST clearly raised.
-- "pills_in_compartment" should list each distinct pill shape found inside the OPEN compartment, with how many of that shape are visible. Empty list [] if compartment is empty or none open.
-- "total_pills_visible" = sum of all counts in pills_in_compartment.
-- If the image is too dark, blurry, or no organizer visible, set pill_organizer_visible to false and other fields to null/empty.
-- Return ONLY the JSON object. No markdown, no commentary.
+PROMPT_NO_REFERENCE = """You are a medical adherence monitoring AI watching a senior take their daily medication.
+
+The image may show a 7-day pill organizer with compartments arranged in a horizontal row. Position-to-day:
+  1 (leftmost) S=SUNDAY, 2 M=MONDAY, 3 T=TUESDAY, 4 W=WEDNESDAY,
+  5 T=THURSDAY, 6 F=FRIDAY, 7 (rightmost) S=SATURDAY.
+
+Return ONLY a valid JSON object:
+{
+  "pill_organizer_visible": boolean,
+  "open_compartment_position": integer 1-7 or null,
+  "open_compartment_day": derived from position, or null,
+  "open_compartment_state": "has_pills" | "empty" | null,
+  "pills_in_compartment": [{"shape": "oval"|"round"|"capsule"|"square"|"other", "count": integer}],
+  "total_pills_visible": integer,
+  "confidence": float 0.0-1.0,
+  "scene_description": short string under 20 words
+}
+
+Be CONSERVATIVE — earbuds cases, electronics, food containers and jewelry boxes are NOT pill organizers.
+Return ONLY the JSON object.
 """
 
 GENERATION_CONFIG = {
@@ -86,14 +138,17 @@ def analyze_frame(image_path: str) -> dict:
 
     if img.mode != "RGB":
         img = img.convert("RGB")
+    img.thumbnail((MAX_DIM, MAX_DIM))
 
     model = genai.GenerativeModel(MODEL_NAME)
 
+    if _loaded_refs:
+        content = [PROMPT_WITH_REFERENCES, *_loaded_refs, img]
+    else:
+        content = [PROMPT_NO_REFERENCE, img]
+
     try:
-        response = model.generate_content(
-            [PROMPT, img],
-            generation_config=GENERATION_CONFIG,
-        )
+        response = model.generate_content(content, generation_config=GENERATION_CONFIG)
     except Exception as e:
         return {"error": f"Gemini API error: {e}"}
 
@@ -109,7 +164,6 @@ def analyze_frame(image_path: str) -> dict:
     except json.JSONDecodeError as e:
         return {"error": f"could not parse JSON: {e}", "raw": raw}
 
-    # Cross-check position vs day
     pos = result.get("open_compartment_position")
     if isinstance(pos, int) and 1 <= pos <= 7:
         derived_day = POSITION_TO_DAY[pos - 1]

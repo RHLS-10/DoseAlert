@@ -1,0 +1,490 @@
+[
+  {
+    "time": "2026-04-26T00:51:18.122846",
+    "status": "alert",
+    "message": "Pill box detected but pills were not taken"
+  },
+  {
+    "time": "2026-04-26T00:51:17.105639",
+    "status": "alert",
+    "message": "Wrong compartment (friday) opened",
+    "compartment": "friday"
+  },
+  {
+    "time": "2026-04-26T00:50:52.130115",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:50:43.889429",
+    "status": "alert",
+    "message": "Wrong compartment (tuesday) opened",
+    "compartment": "tuesday"
+  },
+  {
+    "time": "2026-04-26T00:50:24.408060",
+    "status": "info",
+    "message": "Nudged user"
+  },
+  {
+    "time": "2026-04-26T00:50:16.740151",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:50:08.769667",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:50:01.669113",
+    "status": "alert",
+    "message": "Wrong compartment (tuesday) opened",
+    "compartment": "tuesday"
+  },
+  {
+    "time": "2026-04-26T00:49:53.281494",
+    "status": "alert",
+    "message": "Wrong compartment (friday) opened",
+    "compartment": "friday"
+  },
+  {
+    "time": "2026-04-26T00:49:50.881507",
+    "status": "alert",
+    "message": "Wrong compartment (thursday) opened",
+    "compartment": "thursday"
+  },
+  {
+    "time": "2026-04-26T00:49:44.225617",
+    "status": "alert",
+    "message": "Wrong compartment (wednesday) opened",
+    "compartment": "wednesday"
+  },
+  {
+    "time": "2026-04-26T00:49:37.175926",
+    "status": "alert",
+    "message": "Wrong compartment (monday) opened",
+    "compartment": "monday"
+  },
+  {
+    "time": "2026-04-26T00:49:29.777578",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:49:26.455055",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:49:23.856620",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:49:16.933156",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:48:46.120752",
+    "status": "confirmed",
+    "message": "Pills taken successfully",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:48:37.516394",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:48:30.173284",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:48:21.436492",
+    "status": "alert",
+    "message": "Wrong compartment (friday) opened",
+    "compartment": "friday"
+  },
+  {
+    "time": "2026-04-26T00:48:15.799899",
+    "status": "alert",
+    "message": "Wrong compartment (thursday) opened",
+    "compartment": "thursday"
+  },
+  {
+    "time": "2026-04-26T00:48:12.252705",
+    "status": "alert",
+    "message": "Wrong compartment (wednesday) opened",
+    "compartment": "wednesday"
+  },
+  {
+    "time": "2026-04-26T00:48:08.071098",
+    "status": "alert",
+    "message": "Wrong compartment (tuesday) opened",
+    "compartment": "tuesday"
+  },
+  {
+    "time": "2026-04-26T00:48:03.255788",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:48:00.790611",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:47:58.616452",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:47:51.416625",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:47:20.892249",
+    "status": "alert",
+    "message": "Pill box detected but pills were not taken"
+  },
+  {
+    "time": "2026-04-26T00:47:19.414331",
+    "status": "alert",
+    "message": "Wrong compartment (thursday) opened",
+    "compartment": "thursday"
+  },
+  {
+    "time": "2026-04-26T00:47:17.047982",
+    "status": "alert",
+    "message": "Wrong compartment (wednesday) opened",
+    "compartment": "wednesday"
+  },
+  {
+    "time": "2026-04-26T00:47:09.862462",
+    "status": "alert",
+    "message": "Wrong compartment (tuesday) opened",
+    "compartment": "tuesday"
+  },
+  {
+    "time": "2026-04-26T00:47:07.111937",
+    "status": "alert",
+    "message": "Wrong compartment (monday) opened",
+    "compartment": "monday"
+  },
+  {
+    "time": "2026-04-26T00:47:05.049867",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:47:01.398272",
+    "status": "alert",
+    "message": "Wrong compartment (friday) opened",
+    "compartment": "friday"
+  },
+  {
+    "time": "2026-04-26T00:46:55.048125",
+    "status": "alert",
+    "message": "Wrong compartment (thursday) opened",
+    "compartment": "thursday"
+  },
+  {
+    "time": "2026-04-26T00:46:53.030151",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:46:50.038026",
+    "status": "alert",
+    "message": "Wrong compartment (friday) opened",
+    "compartment": "friday"
+  },
+  {
+    "time": "2026-04-26T00:46:41.036479",
+    "status": "alert",
+    "message": "Wrong compartment (thursday) opened",
+    "compartment": "thursday"
+  },
+  {
+    "time": "2026-04-26T00:46:11.867480",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:45:56.967270",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:45:52.038937",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:45:49.734335",
+    "status": "alert",
+    "message": "Wrong compartment (tuesday) opened",
+    "compartment": "tuesday"
+  },
+  {
+    "time": "2026-04-26T00:45:47.403223",
+    "status": "alert",
+    "message": "Wrong compartment (wednesday) opened",
+    "compartment": "wednesday"
+  },
+  {
+    "time": "2026-04-26T00:45:44.634032",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:45:41.750230",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:45:36.088935",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:45:19.644469",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:38:51.865485",
+    "status": "confirmed",
+    "message": "Pills taken successfully",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:38:49.660361",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:38:15.848016",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:38:13.720241",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:38:10.855572",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:37:44.266166",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:37:13.463109",
+    "status": "confirmed",
+    "message": "Pills taken successfully",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:37:06.442851",
+    "status": "info",
+    "message": "Correct compartment opened",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:36:59.131913",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:36:54.733059",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:36:52.603889",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:36:35.074484",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:36:04.272883",
+    "status": "info",
+    "message": "Today's compartment already empty",
+    "compartment": "sunday"
+  },
+  {
+    "time": "2026-04-26T00:35:37.413136",
+    "status": "info",
+    "message": "Nudged user"
+  },
+  {
+    "time": "2026-04-26T00:35:14.368354",
+    "status": "alert",
+    "message": "Wrong compartment (saturday) opened",
+    "compartment": "saturday"
+  },
+  {
+    "time": "2026-04-26T00:35:12.132000",
+    "status": "info",
+    "message": "Coached user to open sunday"
+  },
+  {
+    "time": "2026-04-26T00:35:09.878805",
+    "status": "info",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:34:58.865550",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:20:53.933940",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:20:00.968096",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:19:28.469653",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:18:51.439623",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:18:18.614513",
+    "status": "alert",
+    "message": "No pill box found within 2 minutes"
+  },
+  {
+    "time": "2026-04-26T00:16:15.627990",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-26T00:11:14.369187",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-26T00:10:40.309550",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:51:52.239138",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:51:25.507569",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:50:52.656277",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:50:45.613450",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:50:12.932677",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:49:52.772612",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:48:59.148521",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:48:49.771785",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:28:22.820206",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:28:00.713442",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:18:25.827062",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:17:24.496208",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:16:51.872635",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:16:40.645208",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  },
+  {
+    "time": "2026-04-25T23:16:07.890931",
+    "status": "confirmed",
+    "message": "Pill box detected"
+  },
+  {
+    "time": "2026-04-25T23:15:05.004687",
+    "status": "info",
+    "message": "Dose started \u2014 prompting user"
+  }
+]
